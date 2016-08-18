@@ -2,7 +2,7 @@
  * @author v.lugovksy
  * created on 15.12.2015
  */
-(function () {
+(function() {
   'use strict';
 
   angular.module('BlurAdmin.theme')
@@ -25,15 +25,15 @@
       }
     }
 
-    $q.all(whatToWait).then(function () {
+    $q.all(whatToWait).then(function() {
       $rootScope.$pageFinishedLoading = true;
     });
 
-    $timeout(function () {
+    $timeout(function() {
       if (!$rootScope.$pageFinishedLoading) {
         $rootScope.$pageFinishedLoading = true;
       }
-    }, 7000);
+    }, 0);
 
     $rootScope.$baSidebarService = baSidebarService;
   }

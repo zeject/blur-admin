@@ -51,4 +51,6 @@ build
 
 /src/release
 /release
+/tmp
+/.tmp
 /bower_components
