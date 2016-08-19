@@ -47,7 +47,7 @@ gulp.task('inject', ['scripts', 'styles', 'injectAuth', 'inject404', 'copyVendor
 
 gulp.task('injectAuth', ['stylesAuth'], function() {
   return injectAlone({
-    js: [path.join(conf.paths.src, '/login/**/*.module.js'), path.join(conf.paths.src, '/login/**/*.js')],
+    js: [path.join(conf.paths.src, '/app/pages/login/**/*.module.js'), path.join(conf.paths.src, '/app/pages/login/**/*.js')],
     css: [path.join('!' + conf.paths.tmp, '/serve/app/vendor.css'), path.join(conf.paths.tmp, '/serve/app/auth.css')],
     paths: [path.join(conf.paths.src, '/auth.html'), path.join(conf.paths.src, '/reg.html')]
   })
@@ -55,7 +55,7 @@ gulp.task('injectAuth', ['stylesAuth'], function() {
 
 gulp.task('inject404', ['styles404'], function() {
   return injectAlone({
-    js: [path.join(conf.paths.src, '/login/**/*.module.js'), path.join(conf.paths.src, '/login/**/*.js')],
+    js: [path.join(conf.paths.src, '/app/pages/login/**/*.module.js'), path.join(conf.paths.src, '/app/pages/login/**/*.js')],
     css: [path.join('!' + conf.paths.tmp, '/serve/app/vendor.css'), path.join(conf.paths.tmp, '/serve/app/404.css')],
     paths: path.join(conf.paths.src, '/404.html')
   })

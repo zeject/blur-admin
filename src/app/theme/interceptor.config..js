@@ -23,11 +23,11 @@ angular.module('BlurAdmin.theme').factory('HttpInterceptor', function($rootScope
 		},
 		'request': function(config) {
 			// console.log(~config.url.indexOf('/u/'));
-			if (!!~config.url.indexOf('http://')) {
+			// if (!!~config.url.indexOf('http://')) {
 
-			} else if (!~config.url.indexOf('html')) {
-				config.url = 'http://a.mp12345.com' + config.url;
-			}
+			// } else if (!~config.url.indexOf('html')) {
+			// 	config.url = 'http://127.0.00.1:8080' + config.url;
+			// }
 			return config;
 		},
 		'requestError': function(config) {
