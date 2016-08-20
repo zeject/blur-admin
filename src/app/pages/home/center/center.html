@@ -2,50 +2,70 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div ba-panel ba-panel-title="Smart Table With Filtering, Sorting And Pagination" ba-panel-class="with-scroll">
+            <div ba-panel ba-panel-title="产品销售列表" ba-panel-class="with-scroll">
                 <div class="horizontal-scroll">
-                    <div class="form-group select-page-size-wrap ">
+                    <!--<div class="form-group select-page-size-wrap ">
                         <label>Rows on page
-      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
-              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
-      </select>
-    </label>
-                    </div>
-                    <table class="table" st-table="smartTableData">
+                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                        </label>
+                    </div>-->
+                    <table class="table" st-table="vm.pages.data">
                         <thead>
                             <tr class="sortable ">
-                                <th class="table-id" st-sort="id" st-sort-default="true">#</th>
-                                <th st-sort="firstName">First Name</th>
+                                <!--<th class="table-id" st-sort="id" st-sort-default="true">#</th>-->
+                                <!--<th st-sort="firstName">First Name</th>
                                 <th st-sort="lastName">Last Name</th>
                                 <th st-sort="username">Username</th>
                                 <th st-sort="email">Email</th>
-                                <th st-sort="age">Age</th>
+                                <th st-sort="age">Age</th>-->
+                                <td>名称</td>
+                                <td>数量</td>
+                                <td>类型</td>
+                                <td>金额</td>
+                                <td>电话/姓名</td>
+                                <!--<td>地址</td>-->
+                                <td>购买时间</td>
+                                <td>出货</td>
+                                <td>支付</td>
                             </tr>
                             <tr>
-                                <th></th>
-                                <th><input st-search="firstName" placeholder="Search First Name" class="input-sm form-control search-input" type="search" /></th>
-                                <th><input st-search="lastName" placeholder="Search Last Name" class="input-sm form-control search-input" type="search" /></th>
-                                <th><input st-search="username" placeholder="Search Username" class="input-sm form-control search-input" type="search" /></th>
-                                <th><input st-search="email" placeholder="Search Email" class="input-sm form-control search-input" type="search" />
+                                <th>
+                                    <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
                                 </th>
-                                <th><input st-search="age" placeholder="Search Age" class="input-sm form-control search-input" type="search" />
+                                <th colspan="5"></th>
+                                <th>
+                                    <switch color="primary" ng-model="vm.obj.isout" switch-change="vm.go(vm.obj.isout)"></switch>
+                                </th>
+                                <th>
+                                    <switch color="primary" ng-model="vm.obj.isoff" switch-change="vm.go(1)"></switch>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in vm.items">
-                                <td class="table-id">{{item.id}}</td>
-                                <td>{{item.firstName}}</td>
-                                <td>{{item.lastName}}</td>
-                                <td>{{item.username}}</td>
-                                <td><a class="email-link" ng-href="mailto:{{item.email}}">{{item.email}}</a></td>
-                                <td>{{item.age}}</td>
+                            <tr ng-repeat="item in vm.pages.data">
+                                <!--<td class="table-id">{{item.id}}</td>-->
+                                <td>{{item.cp_name}}</td>
+                                <td>{{item.buy_count}}</td>
+                                <td>{{item.cp_type}}</td>
+                                <td>{{item.buy_jine}}</td>
+                                <td>
+                                    {{item.buyer_tel}}
+                                    <span ng-if="item.buyer_name">/{{item.buyer_name}}</span> &nbsp;
+                                    <i ng-if="item.buyer_address" popover-animation="true" uib-popover-html="'<span style=color:black>{{item.buyer_address}}</span>'" class="fa fa-truck" aria-hidden="true"></i>
+                                </td>
+                                <!--<td>{{item.buyer_address}}</td>-->
+                                <td>{{item.cdate}}</td>
+                                <td>{{item.isout==true?'已出货':'未出货'}}</td>
+                                <td><a ng-click="vm.out(!item.isout, item)">{{item.isout==true?'取消出货':'发货'}}</a></td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="6" class="text-center">
-                                    <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+                                <td colspan="8" class="text-center">
+                                    <div class="pagination-sm" uib-pagination ng-model="vm.obj.pageNumber" force-ellipses="true" boundary-link-numbers="true" rotate="false" total-items="vm.pages.totalCount" items-per-page="vm.pages.size" max-size="5" num-pages="vm.pages.pageCount" direction-links="true"
+                                        boundary-links="true" previous-text="上一页" next-text="下一页" first-text="首页" last-text="尾页" ng-click="vm.go()"></div>&emsp;共{{vm.pages.totalCount}}条记录
                                 </td>
                             </tr>
                         </tfoot>
@@ -54,5 +74,7 @@
             </div>
         </div>
     </div>
+
+</div>
 
 </div>

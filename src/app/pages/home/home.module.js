@@ -12,7 +12,7 @@
                 url: '/home',
                 template: '<ui-view></ui-view>',
                 abstract: true,
-                title: 'home',
+                title: '产品购买信息',
                 sidebarMeta: {
                     icon: 'ion-compose',
                     order: 0,
@@ -22,7 +22,7 @@
                 url: '/center',
                 controller: 'CenterCtrl',
                 templateUrl: 'app/pages/home/center/center.html',
-                title: 'home',
+                title: '产品购买列表',
                 sidebarMeta: {
                     order: 0,
                 },
