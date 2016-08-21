@@ -1,11 +1,3 @@
 .table-panel {
   height: 295px;
 }
-
-.pagination> .disabled> a {
-  background: none;
-  &:hover,
-  &:focus {
-    background: none;
-  }
-}

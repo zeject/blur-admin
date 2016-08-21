@@ -11,6 +11,15 @@
                             </select>
                         </label>
                     </div>-->
+                    <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.date" datepicker-options="dateOptions" is-open="opened" ng-required="true" close-text="Close" placeholder="{{vm.obj.format}}" />
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"
+                                ng-click="opened=true">
+                                <i class="glyphicon glyphicon-calendar"></i>
+                            </button>
+                        </span>
+                    </p>
                     <table class="table" st-table="vm.pages.data">
                         <thead>
                             <tr class="sortable ">
