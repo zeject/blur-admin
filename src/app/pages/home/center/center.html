@@ -11,16 +11,8 @@
                             </select>
                         </label>
                     </div>-->
-                    <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.date" datepicker-options="dateOptions" is-open="opened" ng-required="true" close-text="Close" placeholder="{{vm.obj.format}}" />
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"
-                                ng-click="opened=true">
-                                <i class="glyphicon glyphicon-calendar"></i>
-                            </button>
-                        </span>
-                    </p>
-                    <table class="table" st-table="vm.pages.data">
+
+                    <table class="table" st-table="vm.pages.data" align="center">
                         <thead>
                             <tr class="sortable ">
                                 <!--<th class="table-id" st-sort="id" st-sort-default="true">#</th>-->
@@ -43,7 +35,11 @@
                                 <th>
                                     <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
                                 </th>
-                                <th colspan="5"></th>
+                                <th colspan="4"></th>
+                                <th>
+                                    <input type="text" style="width:11em;" ng-click="opened=true" class="input-sm form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.date" datepicker-options="dateOptions" is-open="opened" close-text="Close" placeholder="{{vm.obj.format}}"
+                                    />
+                                </th>
                                 <th>
                                     <switch color="primary" ng-model="vm.obj.isout" switch-change="vm.go(vm.obj.isout)"></switch>
                                 </th>
@@ -55,7 +51,7 @@
                         <tbody>
                             <tr ng-repeat="item in vm.pages.data">
                                 <!--<td class="table-id">{{item.id}}</td>-->
-                                <td>{{item.cp_name}}</td>
+                                <td style="width:20%">{{item.cp_name}}</td>
                                 <td>{{item.buy_count}}</td>
                                 <td>{{item.cp_type}}</td>
                                 <td>{{item.buy_jine}}</td>

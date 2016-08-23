@@ -6,9 +6,16 @@
     }
 }
 
-.dropdown-menu {
-    $blurredBgUrl: $images-root+ 'blur-bg-blurred.jpg';
-    background: url($blurredBgUrl);
-    transition: none;
-    background-attachment: fixed;
+.uib-datepicker-popup.dropdown-menu {
+    color: #000;
+    .btn {
+        color: #000;
+    }
+    table {
+        outline: none;
+    }
 }
+
+// .table> tbody> tr> td {
+//     vertical-align: middle;
+// }
