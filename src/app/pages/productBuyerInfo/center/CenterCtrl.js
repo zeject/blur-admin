@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('BlurAdmin.pages.home')
+        .module('BlurAdmin.pages.productBuyerInfo')
         .controller('CenterCtrl', CenterCtrl)
 
     /** @ngInject */
@@ -10,7 +10,10 @@
         var vm = $scope.vm = {};
         vm.obj = {
             pageNumber: 1,
+            format: 'yyyy-MM-dd',
+            buyer_tel: '',
             title: '',
+            cdate: '',
             times: '',
             isoff: false,
             is_xianchang: false,

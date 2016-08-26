@@ -35,9 +35,12 @@
                                 <th>
                                     <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
                                 </th>
-                                <th colspan="4"></th>
+                                <th colspan="3"></th>
                                 <th>
-                                    <input type="text" style="width:11em;" ng-click="opened=true" class="input-sm form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.date" datepicker-options="dateOptions" is-open="opened" close-text="Close" placeholder="{{vm.obj.format}}"
+                                    <input cut-delay cut-delay-func="vm.go(1)" style="width:11em;" ng-model="vm.obj.buyer_tel" placeholder="手机号" class="input-sm form-control search-input" type="search" />
+                                </th>
+                                <th>
+                                    <input type="text" style="width:11em;" ng-click="opened=true" ng-change="vm.go(1)" class="input-sm form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.cdate" datepicker-options="dateOptions" is-open="opened" close-text="Close"
                                     />
                                 </th>
                                 <th>

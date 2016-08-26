@@ -1,0 +1,53 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+        <h4 class="modal-title" id="myModalLabel">{{vm.proItem.title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-5">
+                <label for="exampleInputName1">产品参数</label>
+            </div>
+            <div class="col-sm-5">
+                <label for="exampleInputName2">参数值</label>
+            </div>
+        </div>
+        <div class="row" ng-repeat="item in vm.proParams">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="" ng-model="item.typekey">
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="" ng-model="item.typevalue">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-danger btn-block" ng-click="vm.proParamsDel($index)">删除</button>
+            </div>
+        </div>
+        <form class="showcase-form" role="form" name="basic_form" novalidate="">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="参数名称" ng-model="vm.params.key" required />
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="参数值" ng-model="vm.params.value" required />
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary btn-block" ng-click="vm.proParamsAdd()" ng-disabled="basic_form.$invalid">添加</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="$dismiss();vm.proParamsSave()">&emsp;保存&emsp;</button>
+    </div>
+</div>

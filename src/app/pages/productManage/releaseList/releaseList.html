@@ -1,0 +1,106 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="产品发布列表" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <!--<div class="form-group select-page-size-wrap ">
+                        <label>Rows on page
+                            <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+                                    ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+                            </select>
+                        </label>
+                    </div>-->
+
+                    <table class="table" st-table="vm.pages.data" align="center">
+                        <thead>
+                            <tr class="sortable ">
+                                <!--<th class="table-id" st-sort="id" st-sort-default="true">#</th>-->
+                                <!--<th st-sort="firstName">First Name</th>
+                                <th st-sort="lastName">Last Name</th>
+                                <th st-sort="username">Username</th>
+                                <th st-sort="email">Email</th>
+                                <th st-sort="age">Age</th>-->
+                                <td>图片</td>
+                                <td>名称</td>
+                                <td>产品商家</td>
+                                <td>单位</td>
+                                <td>举办场次</td>
+                                <td>操作</td>
+                                <td>日期</td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th>
+                                    <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
+                                </th>
+                                <th>
+                                    <ui-select ng-model="vm.obj.bonus_phone" ng-change="vm.go(1);">
+                                        <ui-select-match>
+                                            <span>{{$select.selected.company_name}}</span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat=" item.cellphone as item in (vm.bonusUser | filter: $select.search) track by item.id ">
+                                            <span>{{item.company_name}}</span>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            没有搜索到
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </th>
+                                <th></th>
+                                <th>
+                                    <input cut-delay cut-delay-func="vm.go(1) " style="width:5em; " ng-model="vm.obj.times " class="input-sm form-control search-input " type="text " />
+                                </th>
+                                <th></th>
+                                <th>
+                                    <input type="text " style="width:11em; " ng-click="opened=true " ng-change="vm.go(1) " class="input-sm form-control " uib-datepicker-popup="{{vm.obj.format}} " ng-model="vm.obj.cdate " datepicker-options="dateOptions
+                                        " is-open="opened " close-text="Close " />
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in vm.pages.data ">
+                                <!--<td class="table-id ">{{item.id}}</td>-->
+                                <td><img height="30px " ng-src="{{item.imgurl}}!big "></td>
+                                <td style="width:20% ">{{item.name}}</td>
+                                <td>{{item.company_name || '运营服务中心产品'}}</td>
+                                <td>{{item.danwei}}</td>
+                                <td>{{item.times}}</td>
+                                <td>
+                                    <div class="btn-group ">
+                                        <button type="button " class="btn-link dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">
+                                            更多 <span class="caret "></span>
+                                        </button>
+                                        <ul class="dropdown-menu ">
+                                            <li><a ng-click="vm.proFlag(item) ">{{item.flag==true?'下线':'上线'}}</a></li>
+                                            <li><a ng-click="vm.proTop(item) ">{{item.top==true?'取消置顶':'置顶'}}</a></li>
+                                            <li><a ng-click="vm.del(item) ">删除</a></li>
+                                            <li><a ui-sref="admin.productedit({id:item.uuid}) ">修改</a></li>
+                                            <li role="separator " class="divider "></li>
+                                            <li><a ui-sref="admin.productcontent({uuid:item.uuid}) ">详细信息</a></li>
+                                            <li><a data-toggle="modal " ng-click="vm.proParmasItem(item,1) ">产品参数</a></li>
+                                            <li><a data-toggle="modal " ng-click="vm.proParmasItem(item,2) ">包装清单</a></li>
+                                            <li><a data-toggle="modal " ng-click="vm.proParmasItem(item,3) ">锚点导航</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>{{item.cdate}}</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7 " class="text-center ">
+                                    <div class="pagination-sm " uib-pagination ng-model="vm.obj.pageNumber " force-ellipses="true " boundary-link-numbers="true " rotate="false " total-items="vm.pages.totalCount " items-per-page="vm.pages.size
+                                        " max-size="5 " num-pages="vm.pages.pageCount " direction-links="true " boundary-links="true " previous-text="上一页 " next-text="下一页 " first-text="首页 " last-text="尾页 " ng-click="vm.go() "></div>&emsp;共{{vm.pages.totalCount}}条记录
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
