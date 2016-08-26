@@ -71,6 +71,11 @@
         $http.get('/admin/getbonus').success(function(res) {
             console.log(res);
             vm.bonusUser = res.bonus;
+            vm.bonusUser.unshift({
+                id: 0,
+                cellphone: '',
+                company_name: '所有商家'
+            });
         });
 
         vm.params = {};

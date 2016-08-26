@@ -67,11 +67,11 @@
                                 <td>{{item.danwei}}</td>
                                 <td>{{item.times}}</td>
                                 <td>
-                                    <div class="btn-group ">
-                                        <button type="button " class="btn-link dropdown-toggle " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">
+                                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
+                                        <button type="button " class="btn btn-default btn-xs" uib-dropdown-toggle>
                                             更多 <span class="caret "></span>
                                         </button>
-                                        <ul class="dropdown-menu ">
+                                        <ul uib-dropdown-menu>
                                             <li><a ng-click="vm.proFlag(item) ">{{item.flag==true?'下线':'上线'}}</a></li>
                                             <li><a ng-click="vm.proTop(item) ">{{item.top==true?'取消置顶':'置顶'}}</a></li>
                                             <li><a ng-click="vm.del(item) ">删除</a></li>
