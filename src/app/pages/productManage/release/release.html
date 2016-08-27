@@ -1,0 +1,176 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="产品发布" ba-panel-class="with-scroll">
+                <ba-wizard>
+                    <ba-wizard-step title="基本信息" form="vm.productInfoForm">
+                        <form name="vm.productInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.name.$invalid && (vm.productInfoForm.name.$dirty || vm.productInfoForm.$submitted)}">
+                                        <label for="name">产品名称</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="产品名称" ng-model="vm.obj.name" required>
+                                        <span class="help-block error-block basic-block">不能为空</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.danwei.$invalid && (vm.productInfoForm.danwei.$dirty || vm.productInfoForm.$submitted)}">
+                                        <label for="danwei">计量单位</label>
+                                        <input type="text" class="form-control" id="danwei" name="danwei" placeholder="计量单位:个/件/...." ng-model="vm.obj.danwei" required>
+                                        <span class="help-block error-block basic-block">不能为空</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>产品分类</label>
+                                        <select class="form-control" data-container="body" selectpicker ng-model="vm.obj.ptype" ng-options="type.name for type in vm.proTypes">
+                                            <option value="">-- 请选择 --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" ng-if="vm.obj.ptype.items.length">
+                                        <label>二级分类</label>
+                                        <select class="form-control" data-container="body" selectpicker ng-model="vm.obj.protype" ng-options="type.uuid as type.name for type in vm.obj.ptype.items">
+                                            <option value="">-- 请选择 --</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="规格" form="vm.guigeForm">
+                        <form name="vm.guigeForm" novalidate>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table noborder">
+                                        <thead>
+                                            <tr>
+                                                <th>型号</th>
+                                                <th>货号(可空)</th>
+                                                <th>数量(已售:{{vm.obj.c || 0}})</th>
+                                                <th>现价</th>
+                                                <th>原价</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="tr in vm.obj.products">
+                                                <td>
+                                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.guigeForm.type{{$index}}.$invalid && (vm.guigeForm.type{{$index}}.$dirty || vm.guigeForm.$submitted)}">
+                                                        <input type="text" class="form-control" id="type" name="type{{$index}}" ng-model="tr.type" required>
+                                                        <span class="help-block error-block basic-block">Required</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.guigeForm.code{{$index}}.$invalid && (vm.guigeForm.code{{$index}}.$dirty || vm.guigeForm.$submitted)}">
+                                                        <input type="text" class="form-control" id="code" name="code{{$index}}" ng-model="tr.code">
+                                                        <span class="help-block error-block basic-block">Required</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.guigeForm.count{{$index}}.$invalid && (vm.guigeForm.count{{$index}}.$dirty || vm.guigeForm.$submitted)}">
+                                                        <input type="text" class="form-control" id="count" name="count{{$index}}" ng-model="tr.count" required>
+                                                        <span class="help-block error-block basic-block">Required</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.guigeForm.jiage{{$index}}.$invalid && (vm.guigeForm.jiage{{$index}}.$dirty || vm.guigeForm.$submitted)}">
+                                                        <input type="text" class="form-control" id="jiage" name="jiage{{$index}}" ng-model="tr.jiage" required>
+                                                        <span class="help-block error-block basic-block">Required</span>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group has-feedback" ng-class="{'has-error': vm.guigeForm.vjiage{{$index}}.$invalid && (vm.guigeForm.vjiage{{$index}}.$dirty || vm.guigeForm.$submitted)}">
+                                                        <input type="text" class="form-control" id="vjiage" name="vjiage{{$index}}" ng-model="tr.vjiage" required>
+                                                        <span class="help-block error-block basic-block">Required</span>
+                                                    </div>
+                                                </td>
+                                                <td class="text-danger">
+                                                    <i ng-click="vm.delPro($index)" style="font-size:24px;cursor: pointer;" class="glyphicon glyphicon-remove"></i>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <a ng-click="vm.addPro()" class="btn btn-success">新增规格</a>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                    <ba-wizard-step title="上线信息" form="vm.otherForm">
+                        <form class="form-horizontal" name="vm.otherForm" novalidate>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">产品归属</label>
+                                <div class="col-sm-6" ng-if="!vm.obj.nobonus_phone">
+                                    <ui-select ng-model="vm.bonus_phone" name="bonus_phone" required>
+                                        <ui-select-match>
+                                            <span>{{$select.selected.company_name}}-{{$select.selected.cellphone}}</span>
+                                        </ui-select-match>
+                                        <ui-select-choices repeat="item in (vm.bonusUser | filter: $select.search) track by item.id">
+                                            <span>{{item.company_name}}-{{item.cellphone}}</span>
+                                        </ui-select-choices>
+                                        <ui-select-no-choice>
+                                            没有搜索到
+                                        </ui-select-no-choice>
+                                    </ui-select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label class="custom-checkbox">
+                                            <input ng-model="vm.obj.nobonus_phone" type="checkbox">
+                                            <span>鹊桥惠商品</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="limitcount" class="col-sm-2 control-label">每用户限量</label>
+                                <div class="col-sm-6" ng-if="!vm.obj.nocount">
+                                    <input ng-model="vm.obj.limitcount" required type="number" class="form-control" id="limitcount" name="limitcount" placeholder="每用户限制购买量" required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label class="custom-checkbox">
+                                            <input ng-model="vm.obj.nocount" type="checkbox">
+                                            <span>不限量</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="times" class="col-sm-2 control-label">活动场次</label>
+                                <div class="col-sm-6" ng-if="!vm.obj.notimes">
+                                    <input ng-model="vm.obj.times" type="number" class="form-control" id="times" name="times" placeholder="活动场次" required>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="checkbox">
+                                        <label class="custom-checkbox">
+                                            <input ng-model="vm.obj.notimes" type="checkbox">
+                                            <span>普通产品</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否上线</label>
+                                <div class="col-sm-10">
+                                    <switch color="primary" ng-model="vm.obj.flag"></switch>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button ng-disabled="vm.otherForm.$invalid " type="submit" class="btn btn-danger" ng-click="vm.submit()">Sign in</button>
+                                    <button class="btn btn-muted">返回</button>
+                                </div>
+                            </div>
+                        </form>
+                    </ba-wizard-step>
+                </ba-wizard>
+            </div>
+        </div>
+    </div>
+</div>

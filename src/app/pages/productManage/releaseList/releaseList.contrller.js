@@ -6,7 +6,7 @@
         .controller('releaseListCtrl', ControllerCtrl)
 
     /** @ngInject */
-    function ControllerCtrl($scope, $http, $uibModal, ProductService) {
+    function ControllerCtrl($scope, $http, $uibModal, Product) {
         var vm = $scope.vm = {};
 
         vm.obj = {
@@ -17,7 +17,7 @@
             if (!confirm('确定要删除此商品吗?')) {
                 return;
             }
-            ProductService.productEdit('delete', null, {
+            Product.productEdit('delete', null, {
                 uuid: item.uuid
             }).then(function(response) {
                 if (response.flag) {
@@ -33,7 +33,7 @@
          * 置顶产品
          */
         vm.proTop = function(item) {
-            ProductService.productTop({
+            Product.productTop({
                 top: !item.top,
                 uuid: item.uuid
             }).then(function(response) {
@@ -46,7 +46,7 @@
          * 上下线产品
          */
         vm.proFlag = function(item) {
-            ProductService.productFlag({
+            Product.productFlag({
                 flag: !item.flag,
                 uuid: item.uuid
             }).then(function(response) {
@@ -59,7 +59,7 @@
             if (number) {
                 vm.obj.pageNumber = 1;
             }
-            ProductService.product('get', null, vm.obj).then(function(response) {
+            Product.product('get', null, vm.obj).then(function(response) {
                 vm.pages = response.page;
             });
         }
@@ -85,7 +85,7 @@
             vm.proItem.watch = watch;
             var titles = ['', '产品参数', '包装清单', '锚点导航'];
             vm.proItem.title = item.name + '——' + titles[watch];
-            ProductService.productParams('get', null, {
+            Product.productParams('get', null, {
                 uuid: item.uuid,
                 watch: watch
             }).then(function(response) {
@@ -116,7 +116,7 @@
             vm.proParams.splice(index, 1);
         };
         vm.proParamsSave = function() {
-            ProductService.productParams('post', {
+            Product.productParams('post', {
                 typekey: _.map(vm.proParams, 'typekey').join(),
                 typevalue: _.map(vm.proParams, 'typevalue').join(),
                 uuid: vm.proItem.item.uuid,

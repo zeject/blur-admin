@@ -14,7 +14,7 @@
                 templateUrl: 'app/pages/productManage/releaseList/releaseList.html',
                 title: '产品发布列表',
                 sidebarMeta: {
-                    order: 0,
+                    order: 1,
                 },
             });
     }

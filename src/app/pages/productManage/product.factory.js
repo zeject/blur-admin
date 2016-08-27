@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('BlurAdmin.pages.productManage.releaseList')
-        .factory('ProductService', Factory)
+        .module('BlurAdmin.pages.productManage')
+        .factory('Product', Factory)
 
     /** @ngInject */
     function Factory($q, $http) {
@@ -93,6 +93,30 @@
                 var deferred = $q.defer();
                 $http.get('/admin/product/top', {
                     params: obj
+                }).success(function(response) {
+                    deferred.resolve(response);
+                }).error(function(error) {
+                    deferred.reject(error);
+                });
+                return deferred.promise;
+            },
+            proType: function() {
+                var deferred = $q.defer();
+                $http({
+                    url: '/admin/protype',
+                    method: 'get'
+                }).success(function(response) {
+                    deferred.resolve(response);
+                }).error(function(error) {
+                    deferred.reject(error);
+                });
+                return deferred.promise;
+            },
+            bonusUser: function() {
+                var deferred = $q.defer();
+                $http({
+                    url: '/admin/getbonus',
+                    method: 'get'
                 }).success(function(response) {
                     deferred.resolve(response);
                 }).error(function(error) {

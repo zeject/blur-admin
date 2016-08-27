@@ -16,6 +16,10 @@
     }
 }
 
+.table.noborder> tbody> tr> td {
+    border-top: none;
+}
+
 // .table> tbody> tr> td {
 //     vertical-align: middle;
 // }

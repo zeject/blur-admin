@@ -2,7 +2,11 @@
     'use strict';
 
     angular
-        .module('BlurAdmin.pages.productManage', [, 'ui.select', 'BlurAdmin.pages.productManage.releaseList'])
+        .module('BlurAdmin.pages.productManage', [
+            'ui.select',
+            'BlurAdmin.pages.productManage.release',
+            'BlurAdmin.pages.productManage.releaseList'
+        ])
         .config(productManage)
 
     /** @ngInject */
