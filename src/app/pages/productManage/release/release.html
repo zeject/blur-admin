@@ -3,8 +3,32 @@
         <div class="col-md-12">
             <div ba-panel ba-panel-title="产品发布" ba-panel-class="with-scroll">
                 <ba-wizard>
-                    <ba-wizard-step title="基本信息" form="vm.productInfoForm">
+                    <ba-wizard-step title="基本信息" form="vm.productInfoForm" flag="!!vm.obj.img.length">
                         <form name="vm.productInfoForm" novalidate>
+                            <div class="row">
+                                <div class="col-sm-12 form-group" ui-sortable ng-model="vm.obj.img">
+                                    <div class="col-sm-2" ng-repeat="img in vm.obj.img track by $index">
+                                        <div class="upload-pro-img">
+                                            <img class="img-responsive" ng-src="{{img}}!big" class="img-rounded">
+                                            <i class="ion-ios-close-outline" ng-click="vm.deleteImg($index)" ng-if="!noPicture"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2" ng-show="vm.obj.img.length < 5">
+                                        <div class="upload-pro-img" ng-click="vm.up()">
+                                            <img src="assets/img/theme/palette.png">
+                                            <a href class="change-userpic">上传产品图片</a>
+                                            <input id="upfile" ng-show="false" type="file" file-upload-img file-imgs="vm.obj.img" file-limit="5" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+                                    <div ng-class="{'has-error': vm.obj.img.length < 1 && vm.productInfoForm.$submitted}">
+                                        <span class="help-block error-block basic-block">产品图片至少上传一张</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="form-group has-feedback" ng-class="{'has-error': vm.productInfoForm.name.$invalid && (vm.productInfoForm.name.$dirty || vm.productInfoForm.$submitted)}">
@@ -163,7 +187,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <button ng-disabled="vm.otherForm.$invalid " type="submit" class="btn btn-danger" ng-click="vm.submit()">Sign in</button>
+                                    <button ng-disabled="vm.otherForm.$invalid " type="submit" class="btn btn-danger" ng-click="vm.submit()">保存</button>
                                     <button class="btn btn-muted">返回</button>
                                 </div>
                             </div>

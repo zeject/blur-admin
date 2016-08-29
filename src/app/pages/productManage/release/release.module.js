@@ -9,7 +9,7 @@
     function ConfigConfig($stateProvider) {
         $stateProvider
             .state('productManage.release', {
-                url: '/release',
+                url: '/release/{id}',
                 controller: 'releaseCtrl',
                 templateUrl: 'app/pages/productManage/release/release.html',
                 title: '产品发布',

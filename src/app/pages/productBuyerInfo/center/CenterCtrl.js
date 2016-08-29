@@ -15,7 +15,7 @@
             title: '',
             cdate: '',
             times: '',
-            isoff: false,
+            isoff: true,
             is_xianchang: false,
             isfq: false,
             isout: false

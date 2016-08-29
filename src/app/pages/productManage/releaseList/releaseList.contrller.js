@@ -6,12 +6,22 @@
         .controller('releaseListCtrl', ControllerCtrl)
 
     /** @ngInject */
-    function ControllerCtrl($scope, $http, $uibModal, Product) {
+    function ControllerCtrl($scope, $http, $uibModal, $timeout, Product, Session) {
         var vm = $scope.vm = {};
 
         vm.obj = {
             pageNumber: 1
-        };
+        }
+
+        Session.get().then(function(res) {
+            vm.obj = res;
+            vm.go();
+        });
+
+        // $scope.$watch('vm.obj', function(n, o) {
+        //     console.log(vm.obj);
+        //     Session.set(vm.obj);
+        // }, true);
 
         vm.del = function(item) {
             if (!confirm('确定要删除此商品吗?')) {
@@ -56,20 +66,21 @@
         }
 
         vm.go = function(number) {
+            console.log(1, number);
             if (number) {
                 vm.obj.pageNumber = 1;
             }
+            Session.set(vm.obj);
             Product.product('get', null, vm.obj).then(function(response) {
                 vm.pages = response.page;
             });
         }
-        vm.go();
+
 
         /*
          * 获得商家信息列表
          */
         $http.get('/admin/getbonus').success(function(res) {
-            console.log(res);
             vm.bonusUser = res.bonus;
             vm.bonusUser.unshift({
                 id: 0,

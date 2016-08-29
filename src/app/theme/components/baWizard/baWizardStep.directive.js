@@ -11,9 +11,10 @@
       transclude: true,
       require: '^baWizard',
       scope: {
-        form: '='
+        form: '=',
+        flag: '='
       },
-      templateUrl:  'app/theme/components/baWizard/baWizardStep.html',
+      templateUrl: 'app/theme/components/baWizard/baWizardStep.html',
       link: function($scope, $element, $attrs, wizard) {
         $scope.selected = true;
 
@@ -42,6 +43,9 @@
         }
 
         function isComplete() {
+          if (typeof $scope.flag == 'boolean') {
+            return ($scope.form ? $scope.form.$valid : true) && $scope.flag;
+          }
           return $scope.form ? $scope.form.$valid : true;
         }
 

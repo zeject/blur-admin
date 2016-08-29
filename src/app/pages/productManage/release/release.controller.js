@@ -33,6 +33,10 @@
             flag: true
         };
 
+        vm.up = function() {
+            document.getElementById('upfile').click();
+        }
+
         $scope.$watch('vm.obj.nocount', function(value) {
             if (value) {
                 vm.obj.limitcount = -1;

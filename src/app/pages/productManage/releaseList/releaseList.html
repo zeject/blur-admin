@@ -32,10 +32,10 @@
                             <tr>
                                 <th></th>
                                 <th>
-                                    <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
+                                    <input cut-delay cut-delay-func="vm.go(2)" ng-model="vm.obj.title" placeholder="产品名称" class="input-sm form-control search-input" type="search" />
                                 </th>
                                 <th>
-                                    <ui-select ng-model="vm.obj.bonus_phone" ng-change="vm.go(1);">
+                                    <ui-select ng-model="vm.obj.bonus_phone" ng-change="vm.go(3);" data-container="body">
                                         <ui-select-match>
                                             <span>{{$select.selected.company_name}}</span>
                                         </ui-select-match>
@@ -49,11 +49,11 @@
                                 </th>
                                 <th></th>
                                 <th>
-                                    <input cut-delay cut-delay-func="vm.go(1) " style="width:5em; " ng-model="vm.obj.times " class="input-sm form-control search-input " type="text " />
+                                    <input cut-delay cut-delay-func="vm.go(4) " style="width:5em; " ng-model="vm.obj.times " class="input-sm form-control search-input " type="text " />
                                 </th>
                                 <th></th>
                                 <th>
-                                    <input type="text " style="width:11em; " ng-click="opened=true " ng-change="vm.go(1) " class="input-sm form-control " uib-datepicker-popup="{{vm.obj.format}} " ng-model="vm.obj.cdate " datepicker-options="dateOptions
+                                    <input type="text " style="width:11em; " ng-click="opened=true " ng-change="vm.go(5) " class="input-sm form-control " uib-datepicker-popup="{{vm.obj.format}} " ng-model="vm.obj.cdate " datepicker-options="dateOptions
                                         " is-open="opened " close-text="Close " />
                                 </th>
                             </tr>
@@ -75,7 +75,7 @@
                                             <li><a ng-click="vm.proFlag(item) ">{{item.flag==true?'下线':'上线'}}</a></li>
                                             <li><a ng-click="vm.proTop(item) ">{{item.top==true?'取消置顶':'置顶'}}</a></li>
                                             <li><a ng-click="vm.del(item) ">删除</a></li>
-                                            <li><a ui-sref="admin.productedit({id:item.uuid}) ">修改</a></li>
+                                            <li><a ui-sref="productManage.release({id:item.uuid}) ">修改</a></li>
                                             <li role="separator " class="divider "></li>
                                             <li><a ui-sref="admin.productcontent({uuid:item.uuid}) ">详细信息</a></li>
                                             <li><a data-toggle="modal " ng-click="vm.proParmasItem(item,1) ">产品参数</a></li>
@@ -83,6 +83,7 @@
                                             <li><a data-toggle="modal " ng-click="vm.proParmasItem(item,3) ">锚点导航</a></li>
                                         </ul>
                                     </div>
+                                    <i ng-if="item.top" class="ion-arrow-up-c text-danger"></i>
                                 </td>
                                 <td>{{item.cdate}}</td>
                             </tr>
@@ -90,7 +91,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="7 " class="text-center ">
-                                    <div class="pagination-sm " uib-pagination ng-model="vm.obj.pageNumber " force-ellipses="true " boundary-link-numbers="true " rotate="false " total-items="vm.pages.totalCount " items-per-page="vm.pages.size
+                                    <div class="pagination-sm " uib-pagination ng-model="vm.obj.pageNumber" force-ellipses="true " boundary-link-numbers="true " rotate="false " total-items="vm.pages.totalCount " items-per-page="vm.pages.size
                                         " max-size="5 " num-pages="vm.pages.pageCount " direction-links="true " boundary-links="true " previous-text="上一页 " next-text="下一页 " first-text="首页 " last-text="尾页 " ng-click="vm.go() "></div>&emsp;共{{vm.pages.totalCount}}条记录
                                 </td>
                             </tr>
