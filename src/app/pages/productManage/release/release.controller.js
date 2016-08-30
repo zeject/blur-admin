@@ -6,7 +6,7 @@
         .controller('releaseCtrl', ControllerCtrl)
 
     /** @ngInject */
-    function ControllerCtrl($scope, $http, $stateParams, Product) {
+    function ControllerCtrl($scope, $http, $state, $timeout, $stateParams, Product) {
         var vm = $scope.vm = {};
         var id = $stateParams.id;
         if (!id) {
@@ -32,10 +32,6 @@
             nobonus_phone: true,
             flag: true
         };
-
-        vm.up = function() {
-            document.getElementById('upfile').click();
-        }
 
         $scope.$watch('vm.obj.nocount', function(value) {
             if (value) {
@@ -96,7 +92,7 @@
             Product.productEdit(method, vm.obj, null).then(function(response) {
                 if (response.flag) {
                     alert('保存成功!');
-                    $state.go('admin.product');
+                    $state.go('productManage.releaseList');
                 } else {
                     alert('保存失败,请重试或联系管理员');
                 }

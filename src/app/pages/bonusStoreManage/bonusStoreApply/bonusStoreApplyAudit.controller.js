@@ -29,7 +29,7 @@
                     } else {
                         alert('您已拒绝!');
                     }
-                    $state.go('admin.apply');
+                    $state.go('bonusStoreManage.bonusStoreApply');
                 } else {
                     alert('初始化失败,该商户已加入!');
                 }
