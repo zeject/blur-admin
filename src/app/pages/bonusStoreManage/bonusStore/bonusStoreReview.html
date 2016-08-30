@@ -1,0 +1,31 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-6">
+            <div ba-panel ba-panel-title="{{vm.name}}" ba-panel-class="with-scroll">
+                <div class="feed-messages-container" track-width="smallContainerWidth" min-width="360">
+                    <div class="feed-message" ng-repeat="message in vm.storeReview">
+                        <div class="text-message">
+                            <div class="message-header">
+                                <span class="author">{{ ::message.realname }} {{ ::message.mobile_phone}}</span>
+                            </div>
+                            <div class="message-content line-clamp line-clamp-2">
+                                {{::message.content}}
+                            </div>
+                            <div class="message-time">
+                                <div class="post-time">
+                                    {{::message.cdate}}
+                                </div>
+                                <div class="ago-time">
+                                    {{::message.star}}星
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <button class="btn btn-danger" ui-sref="bonusStoreManage.bonusStore">返回</button>
+        </div>
+    </div>
+</div>

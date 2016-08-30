@@ -16,7 +16,6 @@
             link: function($scope, elem, attr) {
                 var time;
                 $scope.$watch('ngModel', function(n, o) {
-                    console.log(n, o);
                     if (n === o) {
                         return;
                     }

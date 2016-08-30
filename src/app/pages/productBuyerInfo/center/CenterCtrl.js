@@ -6,7 +6,7 @@
         .controller('CenterCtrl', CenterCtrl)
 
     /** @ngInject */
-    function CenterCtrl($scope, $http) {
+    function CenterCtrl($scope, $http, Session) {
         var vm = $scope.vm = {};
         vm.obj = {
             pageNumber: 1,
@@ -20,17 +20,21 @@
             isfq: false,
             isout: false
         };
+        Session.get().then(function(res) {
+            vm.obj = res;
+            vm.go();
+        });
         vm.go = function(number) {
             if (number) {
                 vm.obj.pageNumber = 1;
             }
+            Session.set(vm.obj);
             var url = '/admin/getmysell';
             $http.post(url, vm.obj).success(function(response) {
                 vm.pages = response.p;
                 vm.items = response.p.data;
             });
         }
-        vm.go();
 
         vm.out = function(out, item) {
             if (!confirm('确定要' + (out ? '发货' : '取消发货') + '吗?')) {

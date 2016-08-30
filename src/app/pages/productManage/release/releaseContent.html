@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-3">
+            <button type="file" class="btn btn-success btn-lg btn-block" file-upload-img file-imgs="vm.imgs" file-limit="100">上传图片</button>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2">
+            <button type="button" class="btn btn-danger btn-lg btn-block" ui-sref="productManage.releaseList">返回</button>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-primary btn-lg btn-block" ng-click="vm.submit()">保存</button>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <div ng-repeat="item in vm.imgs track by $index">
+            <img class="img-responsive" ng-src="{{item}}">
+        </div>
+    </div>
+    <div class="col-xs-2" ui-sortable ng-model="vm.imgs">
+        <div ng-repeat="item in vm.imgs track by $index">
+            <div class="upload-pro-img">
+                <img class="img-responsive" ng-src="{{item}}">
+                <i class="ion-ios-close-outline" ng-click="vm.delImg($index)" ng-if="!noPicture"></i>
+            </div>
+        </div>
+    </div>
+</div>

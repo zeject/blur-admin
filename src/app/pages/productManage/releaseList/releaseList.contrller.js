@@ -66,7 +66,6 @@
         }
 
         vm.go = function(number) {
-            console.log(1, number);
             if (number) {
                 vm.obj.pageNumber = 1;
             }

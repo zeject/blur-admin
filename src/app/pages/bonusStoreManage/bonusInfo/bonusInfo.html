@@ -1,0 +1,145 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="积分详情" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <div>
+                        <div ng-if="vm.obj.type=='user'">
+                            <div class="col-sm-4">
+                                <div ba-panel>
+                                    用户总积分:{{vm.bsum}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div ba-panel>
+                                    积分&gt;0的用户总数:{{vm.kabo}}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div ba-panel>
+                                    持有积分&lt;=0的用户总数:{{vm.heya}}
+                                </div>
+                            </div>
+                        </div>
+                        <div ng-if="vm.obj.type=='store'">
+                            <div class="col-sm-6">
+                                <div ba-panel>
+                                    商户总积分:{{vm.store.bonus}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div ba-panel>
+                                    商户总数:{{vm.store.count}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div ba-panel>
+                                    商户基础分总和:{{vm.bonusCount.basis}}
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div ba-panel>
+                                    总积分-基础分:{{vm.store.bonus - vm.bonusCount.basis}}
+                                </div>
+                            </div>
+                        </div>
+                        <form class="col-sm-12">
+                            <div class="col-sm-3">
+                                <label>选择类型</label>
+                                <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                    <div class="btn-group" role="group">
+                                        <label ng-class="{active:vm.obj.type=='user'}" class="btn btn-primary"> <input type="radio"
+                                            class="hidden" name="type" ng-model="vm.obj.type"
+                                            ng-click="vm.obj.type='user';vm.go(1)" />用户
+                                        </label>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <label ng-class="{active:vm.obj.type=='store'}" class="btn btn-primary"> <input type="radio"
+                                            class="hidden" name="type" ng-model="vm.obj.type"
+                                            ng-click="vm.obj.type='store';vm.go(1)" />商户
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>最小积分</label> <input uib-typeahead="state for state in vm.states" type="number" class="form-control" placeholder="最小积分..." ng-model="vm.obj.minBonus">
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <label>最大积分</label> <input uib-typeahead="state for state in vm.states" type="number" class="form-control" placeholder="最大积分..." ng-model="vm.obj.maxBonus">
+                                </div>
+                            </div>
+                            <div class="col-sm-2" ng-if="vm.obj.type=='store'">
+                                <label>日期 <a type="button" ng-click="vm.obj.format='yyyy-MM'"
+                                    name="date" checked="checked">月</a> <a type="button"
+                                    ng-click="vm.obj.format='yyyy-MM-dd'" name="date">日</a>
+                                </label>
+                                <p class="input-group">
+                                    <input type="text" class="form-control" uib-datepicker-popup="{{vm.obj.format}}" ng-model="vm.obj.date" datepicker-options="dateOptions" is-open="opened" close-text="Close" placeholder="{{vm.obj.format}}" />
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default"
+                                            ng-click="opened=true">
+                                            <i class="glyphicon glyphicon-calendar"></i>
+                                        </button>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <label>手机号</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="手机号..." ng-model="vm.obj.cellphone"> <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" ng-click="vm.go(1)">搜索</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+
+                        <div class="table-responsive col-sm-12">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>用户id</td>
+                                        <td>姓名</td>
+                                        <td>手机号</td>
+                                        <td ng-if="vm.obj.type=='store'">公司名称</td>
+                                        <td ng-if="vm.obj.type=='store'">基础分</td>
+                                        <td ng-if="vm.obj.type=='store'">结余</td>
+                                        <td>总积分</td>
+                                        <td>收取积分</td>
+                                        <td>消费积分</td>
+                                    </tr>
+                                    <tr ng-repeat="item in vm.pages.data" ng-class="{'user-exist':!item.userid}">
+                                        <td>{{item.userid || '未注册'}}</td>
+                                        <td>{{item.realname || '未注册'}}</td>
+                                        <td>{{item.cellphone}}</td>
+                                        <td ng-if="vm.obj.type=='store'">{{item.company_name}}</td>
+                                        <td ng-if="vm.obj.type=='store'">{{item.basis}}</td>
+                                        <td ng-if="vm.obj.type=='store'">{{item.bonus - item.basis}}</td>
+                                        <td>{{item.bonus}}</td>
+                                        <td>{{item.addBonus}}</td>
+                                        <td>{{item.cutBonus}}</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="{{vm.obj.type=='user'?6:9}}" class="text-center">
+                                            <div class="pagination-sm" uib-pagination ng-model="vm.obj.pageNumber" force-ellipses="true" boundary-link-numbers="true" rotate="false" total-items="vm.pages.totalCount" items-per-page="vm.pages.size" max-size="5" num-pages="vm.pages.pageCount" direction-links="true"
+                                                boundary-links="true" previous-text="上一页" next-text="下一页" first-text="首页" last-text="尾页" ng-click="vm.go()"></div>&emsp;共{{vm.pages.totalCount}}条记录
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

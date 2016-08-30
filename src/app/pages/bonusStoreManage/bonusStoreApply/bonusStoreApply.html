@@ -1,0 +1,60 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="积分详情" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <td>申请ID</td>
+                                <td>申请日期</td>
+                                <td>店铺名称</td>
+                                <td>联系电话/联系人</td>
+                                <td>所在地</td>
+                                <td>客服审核</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="text " style="width:11em; " ng-click="opened=true " ng-change="vm.go(5) " class="input-sm form-control " uib-datepicker-popup="{{vm.obj.format}} " ng-model="vm.obj.cdate " datepicker-options="dateOptions
+                                        " is-open="opened " close-text="Close " />
+                                </td>
+                                <td>
+                                    <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.company_name" placeholder="店铺名称" class="input-sm form-control search-input" type="search" />
+                                </td>
+                                <td>
+                                    <input cut-delay cut-delay-func="vm.go(1)" ng-model="vm.obj.phone" placeholder="手机号" class="input-sm form-control search-input" type="search" />
+                                </td>
+                                <td colspan="2"></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in vm.pages.data">
+                                <td>{{item.id}}</td>
+                                <td>{{item.cdate}}</td>
+                                <td>{{item.company_name}}</td>
+                                <td>{{item.phone}}/{{item.realname}}</td>
+                                <td>{{item.areas}}</td>
+                                <td><a ng-if="item.flag==0" ui-sref="bonusStoreManage.bonusStoreApplyAudit({id:item.id})">审核</a> <span ng-if="item.flag==1">审核通过</span> <span ng-if="item.flag==2">已拒绝</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    <div class="pagination-sm" uib-pagination ng-model="vm.obj.pageNumber" force-ellipses="true" boundary-link-numbers="true" rotate="false" total-items="vm.pages.totalCount" items-per-page="vm.pages.size" max-size="5" num-pages="vm.pages.pageCount" direction-links="true"
+                                        boundary-links="true" previous-text="上一页" next-text="下一页" first-text="首页" last-text="尾页" ng-click="vm.go()"></div>&emsp;共{{vm.pages.totalCount}}条记录
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

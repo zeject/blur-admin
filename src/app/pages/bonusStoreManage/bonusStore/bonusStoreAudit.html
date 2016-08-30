@@ -1,0 +1,100 @@
+<div class="widgets">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="商户信息修改" ba-panel-class="with-scroll">
+                <form name="vm.auditFroms" novalidate>
+                    <div class="row">
+                        <div class="col-sm-12 form-group" ui-sortable ng-model="vm.obj.img">
+                            <div class="col-sm-2" ng-repeat="img in vm.obj.img track by $index">
+                                <div class="upload-pro-img">
+                                    <img class="img-responsive" ng-src="{{img}}!big" class="img-rounded">
+                                    <i class="ion-ios-close-outline" ng-click="vm.deleteImg($index)" ng-if="!noPicture"></i>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2" ng-show="vm.obj.img.length < 5">
+                                <div class="upload-pro-img" ng-click="vm.up()">
+                                    <img src="assets/img/theme/palette.png">
+                                    <a href class="change-userpic">上传店铺图片</a>
+                                    <input id="upfile" ng-show="false" type="file" file-upload-img file-imgs="vm.obj.img" file-limit="5" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div ng-class="{'has-error': vm.obj.img.length < 1 && vm.auditFroms.$submitted}">
+                                <span class="help-block error-block basic-block">店铺图片至少上传一张</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.company_name.$invalid && (vm.auditFroms.company_name.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="company_name">店铺名称</label>
+                                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="店铺名称" ng-model="vm.obj.company_name" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.bonus.$invalid && (vm.auditFroms.bonus.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="bonus">积分</label>
+                                <input disabled type="text" class="form-control" id="bonus" name="bonus" placeholder="积分" ng-model="vm.obj.bonus" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.basis.$invalid && (vm.auditFroms.basis.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="basis">基础分</label>
+                                <input disabled type="text" class="form-control" id="basis" name="basis" placeholder="基础分" ng-model="vm.obj.basis" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.realname.$invalid && (vm.auditFroms.realname.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="realname">姓名</label>
+                                <input type="text" class="form-control" id="realname" name="realname" placeholder="姓名" ng-model="vm.obj.realname" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.cellphone.$invalid && (vm.auditFroms.cellphone.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="cellphone">电话</label>
+                                <input type="text" class="form-control" id="cellphone" name="cellphone" placeholder="电话" ng-model="vm.obj.cellphone" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.address.$invalid && (vm.auditFroms.address.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="address">详细地址</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="详细地址" ng-model="vm.obj.address" required>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group has-feedback" ng-class="{'has-error': vm.auditFroms.description.$invalid && (vm.auditFroms.description.$dirty || vm.auditFroms.$submitted)}">
+                                <label for="description">经营描述</label>
+                                <textarea name="description" class="form-control" rows="5" placeholder="经营描述" ng-model="vm.obj.description" required></textarea>
+                                <span class="help-block error-block basic-block">不能为空</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <button ng-disabled="vm.auditFroms.$invalid " type="submit" class="btn btn-danger" ng-click="vm.submit()">保存</button> &emsp;&emsp;&emsp;&emsp;
+                            <button class="btn btn-muted" ui-sref="bonusStoreManage.bonusStore">返回</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

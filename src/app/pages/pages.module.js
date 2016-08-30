@@ -18,6 +18,7 @@
       'BlurAdmin.pages.profile',
       'BlurAdmin.pages.productManage',
       'BlurAdmin.pages.productBuyerInfo',
+      'BlurAdmin.pages.bonusStoreManage'
     ])
     .config(routeConfig);
 
