@@ -12,9 +12,9 @@
                 url: '/productBuyerInfo',
                 controller: 'CenterCtrl',
                 templateUrl: 'app/pages/productBuyerInfo/center/center.html',
-                title: '产品购买信息',
+                title: '产品信息',
                 sidebarMeta: {
-                    icon: 'ion-compose',
+                    icon: 'fa fa-cube',
                     order: 0,
                 },
             });

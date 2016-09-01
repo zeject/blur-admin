@@ -18,7 +18,7 @@
                 template: '<ui-view></ui-view>',
                 title: '产品管理',
                 sidebarMeta: {
-                    icon: 'ion-compose',
+                    icon: 'fa fa-cubes',
                     order: 0,
                 },
             });

@@ -18,7 +18,7 @@
                 template: '<ui-view></ui-view>',
                 title: '积分管理',
                 sidebarMeta: {
-                    icon: 'ion-compose',
+                    icon: 'ion-social-usd',
                     order: 0,
                 },
             });
